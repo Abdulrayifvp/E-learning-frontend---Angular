@@ -1,0 +1,96 @@
+<div class="vh-100 d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-md-8 col-lg-5">
+        <div class="card bg-white">
+          <div class="card-body p-5">
+            <form
+              class="mb-3 mt-md-4"
+              [formGroup]="loginForm"
+              (ngSubmit)="onSubmit()"
+            >
+              <div class="row mb-5">
+                <div class="col-9">
+                  <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                </div>
+                <div class="col-3">
+                  <a class="link-dark" href="" routerLink="/"
+                    ><fa-icon [icon]="faArrowLeft"></fa-icon> Home
+                  </a>
+                </div>
+              </div>
+              <div class="mb-3">
+                <input
+                  formControlName="email"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Email"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && loginForm.controls['email'].errors
+                  }"
+                />
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && loginForm.controls['email'].errors?.['email']"
+                >
+                  Invalid email.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && loginForm.controls['email'].errors?.['required']"
+                >
+                  This field is required.
+                </p>
+              </div>
+              <div class="mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Password"
+                  formControlName="password"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && loginForm.controls['password'].errors
+                  }"
+                />
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && loginForm.controls['password'].errors?.['minlength']"
+                >
+                  Password must be minimum 8 characters.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && loginForm.controls['password'].errors?.['required']"
+                >
+                  This field is required.
+                </p>
+              </div>
+              <p class="small">
+                <a class="text-primary" href="forget-password.html"
+                  >Forgot password?</a
+                >
+              </p>
+              <div class="d-grid mt-5">
+                <button class="btn btn-outline-dark" type="submit">
+                  Login
+                </button>
+              </div>
+            </form>
+            <div>
+              <p class="mb-0 text-center">
+                Don't have an account?
+                <a href="" routerLink="/register" class="text-primary fw-bold"
+                  >Sign Up</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

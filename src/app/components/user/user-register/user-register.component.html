@@ -1,0 +1,178 @@
+<div class="vh-100 d-flex justify-content-center align-items-center">
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 col-md-8 col-lg-5">
+        <div class="card bg-white">
+          <div class="card-body p-5">
+            <form
+              [formGroup]="registerForm"
+              (ngSubmit)="onSubmit()"
+              class="mb-3 mt-md-4"
+            >
+              <div class="row mb-5">
+                <div class="col-9">
+                  <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
+                </div>
+                <div class="col-3">
+                  <a class="link-dark" href=" " routerLink="/"
+                    ><fa-icon [icon]="faArrowLeft"></fa-icon> Home
+                  </a>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <input
+                  formControlName="username"
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  placeholder="Username"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && registerForm.controls['username'].errors
+                  }"
+                />
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['username'].errors?.['pattern']"
+                >
+                  Invalid username.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['username'].errors?.['required']"
+                >
+                  This field is required.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['username'].errors?.['minlength']"
+                >
+                  Username must be 4 characters.
+                </p>
+              </div>
+              <div class="mb-3">
+                <input
+                  formControlName="email"
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="Email"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && registerForm.controls['email'].errors
+                  }"
+                />
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['email'].errors?.['email']"
+                >
+                  Invalid email.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['email'].errors?.['required']"
+                >
+                  This field is required.
+                </p>
+              </div>
+              <div class="mb-3">
+                <input
+                  formControlName="phone"
+                  type="phone"
+                  class="form-control"
+                  id="phone"
+                  placeholder="Phone Number"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && registerForm.controls['phone'].errors
+                  }"
+                />
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['phone'].errors?.['pattern']"
+                >
+                  Invalid phone.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['phone'].errors?.['required']"
+                >
+                  This field is required.
+                </p>
+              </div>
+              <div class="mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Password"
+                  formControlName="password"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && registerForm.controls['password'].errors
+                  }"
+                />
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['password'].errors?.['minlength']"
+                >
+                  Password must be minimum 8 characters.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['password'].errors?.['required']"
+                >
+                  This field is required.
+                </p>
+              </div>
+              <div class="mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirm-password"
+                  placeholder="Confirm Password"
+                  formControlName="confirmPassword"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      registerForm.controls['confirmPassword'].errors
+                  }"
+                />
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['confirmPassword'].errors?.['minlength']"
+                >
+                  Password must be minimum 8 characters.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['confirmPassword'].errors?.['required']"
+                >
+                  This field is required.
+                </p>
+                <p
+                  class="text-danger"
+                  *ngIf="submitted && registerForm.controls['confirmPassword'].errors?.['confirmPasswordValidator']"
+                >
+                  Password and Confirm Password does'nt match..
+                </p>
+              </div>
+              <div class="d-grid mt-5">
+                <button class="btn btn-outline-dark" type="submit">
+                  Register
+                </button>
+              </div>
+            </form>
+            <p class="mb-0 text-center">
+              Already have an account.
+              <a href=" " routerLink="/login" class="text-primary fw-bold"
+                >Login</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
