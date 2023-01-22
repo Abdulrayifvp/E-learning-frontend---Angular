@@ -15,38 +15,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="" href="#"
+          <a class="nav-link" routerLink="/" routerLinkActive="active" href="#"
             >Home</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
+          <a class="nav-link" routerLink="/" routerLinkActive="active" href="#"
+            >Services</a
           >
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link disabled"
-            href="#"
-            tabindex="-1"
-            aria-disabled="true"
-            >Disabled</a
+          <a class="nav-link" routerLink="/" routerLinkActive="active" href="#"
+            >Contact</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" href="#"
+            >About</a
           >
         </li>
       </ul>
@@ -61,11 +46,26 @@
       </form> -->
 
       <div class="d-flex">
-        <a routerLink="login" type="button" class="btn btn-outline-dark me-3"
+        <a
+          *ngIf="!isLoggIn()"
+          routerLink="login"
+          type="button"
+          class="btn btn-outline-dark me-3"
           >Login</a
         >
-        <a routerLink="register" type="button" class="btn btn-dark me-3"
+        <a
+          *ngIf="!isLoggIn()"
+          routerLink="register"
+          type="button"
+          class="btn btn-dark me-3"
           >Register</a
+        >
+        <a
+          *ngIf="isLoggIn()"
+          (click)="logout()"
+          type="button"
+          class="btn btn-dark me-3"
+          >Logout</a
         >
       </div>
     </div>

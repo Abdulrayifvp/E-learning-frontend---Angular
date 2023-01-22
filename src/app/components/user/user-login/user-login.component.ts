@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Validators } from '@angular/forms';
 import { UserServices } from 'src/app/services/user.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -12,7 +13,7 @@ import { UserServices } from 'src/app/services/user.service';
 export class UserLoginComponent implements OnInit {
 
   faArrowLeft = faArrowLeft
-
+  errorMessage: string = ''
   loginForm !: FormGroup
   submitted = false
   constructor(private formBuilder: FormBuilder, private userService: UserServices, private router: Router) { }
@@ -35,19 +36,12 @@ export class UserLoginComponent implements OnInit {
       password: formData.password
     }
 
-    type Response = {
-      email: string,
-      password: string,
-      phone: string,
-      token: string,
-      username: string,
-    }
-
-    this.userService.login(data).subscribe((response: Response | any) => {
-      console.log(response.token);
-      localStorage.setItem('token', response.token)
+    this.userService.login(data).subscribe((response: any) => {
+      localStorage.setItem('token', "" + response)
       this.router.navigate(['/'])
 
+    }, (err) => {
+      this.errorMessage = err.error
     })
   }
 }

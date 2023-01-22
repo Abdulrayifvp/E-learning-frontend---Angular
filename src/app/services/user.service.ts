@@ -21,7 +21,17 @@ export class UserServices {
     })
   }
 
+  test() {
+    return this.httpClient.get(this.url + '/test', {
+      headers: new HttpHeaders().set('Content-Type', 'application/json')
+    })
+  }
+
   loggIn() {
     return !!localStorage.getItem('token')
+  }
+
+  getToken() {
+    return localStorage.getItem('token')
   }
 }

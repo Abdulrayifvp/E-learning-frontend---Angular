@@ -16,8 +16,10 @@ import { AdminLoginComponent } from './components/admin/admin-login/admin-login.
 import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UserServices } from './services/user.service';
+import { AuthGuard } from './guard/auth.guard';
+import { TokenIntercepterService } from './services/token-intercepter.service';
 
 @NgModule({
   declarations: [
@@ -42,9 +44,14 @@ import { HttpClientModule } from '@angular/common/http';
     FontAwesomeModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [UserServices, AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenIntercepterService,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

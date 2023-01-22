@@ -14,9 +14,11 @@ import { UserServices } from 'src/app/services/user.service';
   styleUrls: ['./user-register.component.css']
 })
 export class UserRegisterComponent implements OnInit {
+
+  errorMessage: string = ''
   faArrowLeft = faArrowLeft
   registerForm!: FormGroup
-  submitted = false
+  submitted: boolean = false
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserServices) {
 
   }
@@ -46,9 +48,11 @@ export class UserRegisterComponent implements OnInit {
       password: formData.password
     }
     this.userService.signup(data).subscribe((response: object) => {
-      console.log(response);
+      localStorage.setItem('token', JSON.stringify(response))
       this.router.navigate(['/'])
 
+    }, (err) => {
+      this.errorMessage = err.error
     })
 
   }
