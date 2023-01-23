@@ -6,10 +6,10 @@ import { UserServices } from './user.service';
 })
 export class TokenIntercepterService implements HttpInterceptor {
 
-  constructor(private authService: UserServices) { }
+  constructor(private userService: UserServices) { }
 
   intercept(req: any, next: any) {
-    let authService = this.authService.getToken()
+    let authService = this.userService.getToken()
 
     let tokenizedReq = req.clone({
       setHeaders: {
