@@ -3,7 +3,6 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms'
 import { Validators } from '@angular/forms'
-import { FormControl } from '@angular/forms'
 import { GlobalConstants } from 'src/app/shared/global-constants';
 import { Router } from '@angular/router';
 import { UserServices } from 'src/app/services/user.service';
@@ -48,7 +47,7 @@ export class UserRegisterComponent implements OnInit {
       password: formData.password
     }
     this.userService.signup(data).subscribe((response: object) => {
-      localStorage.setItem('token', JSON.stringify(response))
+      localStorage.setItem('userToken', "" + response)
       this.router.navigate(['/'])
 
     }, (err) => {

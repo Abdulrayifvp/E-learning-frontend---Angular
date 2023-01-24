@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { InstructorService } from 'src/app/services/instructor.service';
+
 
 @Component({
   selector: 'app-instructor-header',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstructorHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private instructorService: InstructorService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  isLoggedIn() {
+    return this.instructorService.isLoggedIn()
+  }
+
+  logout() {
+    localStorage.removeItem('instructorToken')
+    this.router.navigate(['/instructor/login'])
+  }
 }

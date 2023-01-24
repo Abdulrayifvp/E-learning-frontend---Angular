@@ -14,21 +14,12 @@ export class UserHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onTest() {
-    console.log('test called');
-
-    return this.userService.test().subscribe((response) => {
-      console.log(response);
-
-    })
-  }
-
   isLoggIn() {
-    return this.userService.loggIn()
+    return this.userService.isLoggedIn()
   }
 
   logout() {
-    localStorage.removeItem('token')
+    localStorage.removeItem('userToken')
     this.router.navigate(['/login'])
   }
 }

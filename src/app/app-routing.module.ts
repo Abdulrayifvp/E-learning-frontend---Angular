@@ -8,13 +8,16 @@ import { InstructorRegisterComponent } from './components/instructor/instructor-
 import { UserHomeComponent } from './components/user/user-home/user-home.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { UserRegisterComponent } from './components/user/user-register/user-register.component';
-import { AuthGuard } from './guard/auth.guard';
+import { AdminAuthGuard } from './guard/admin-auth.guard';
+import { InstructorAuthGuard } from './guard/instructor-auth.guard';
+import { UserAuthGuard } from './guard/userAuth.guard';
+
 
 const routes: Routes = [
   {
     path: '',
     component: UserHomeComponent,
-    // canActivate: [AuthGuard]
+    // canActivate: [UserAuthGuard]
   },
   {
     path: 'login',
@@ -29,16 +32,18 @@ const routes: Routes = [
     component: InstructorLoginComponent
   },
   {
-    path: 'intructor/register',
+    path: 'instructor/register',
     component: InstructorRegisterComponent
   },
   {
     path: 'instructor',
-    component: InstructorHomeComponent
+    component: InstructorHomeComponent,
+    canActivate: [InstructorAuthGuard]
   },
   {
     path: 'admin',
-    component: AdminHomeComponent
+    component: AdminHomeComponent,
+    canActivate: [AdminAuthGuard]
   },
   {
     path: 'admin/login',

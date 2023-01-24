@@ -18,7 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserServices } from './services/user.service';
-import { AuthGuard } from './guard/auth.guard';
+import { UserAuthGuard } from './guard/userAuth.guard';
 import { TokenIntercepterService } from './services/token-intercepter.service';
 
 @NgModule({
@@ -46,7 +46,7 @@ import { TokenIntercepterService } from './services/token-intercepter.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [UserServices, AuthGuard,
+  providers: [UserServices, UserAuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenIntercepterService,
