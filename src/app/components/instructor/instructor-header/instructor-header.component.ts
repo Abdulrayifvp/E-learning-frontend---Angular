@@ -10,9 +10,16 @@ import { InstructorService } from 'src/app/services/instructor.service';
 })
 export class InstructorHeaderComponent implements OnInit {
 
+
+
   constructor(private instructorService: InstructorService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  collapsed = true;
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
   }
 
   isLoggedIn() {

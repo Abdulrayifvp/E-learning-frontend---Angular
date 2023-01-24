@@ -14,6 +14,11 @@ export class AdminHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  collapsed = true;
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
+
   isLoggedIn() {
     return this.adminService.isLoggedIn()
   }

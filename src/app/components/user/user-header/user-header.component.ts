@@ -14,6 +14,11 @@ export class UserHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  collapsed = true;
+  toggleCollapsed(): void {
+    this.collapsed = !this.collapsed;
+  }
+
   isLoggIn() {
     return this.userService.isLoggedIn()
   }
