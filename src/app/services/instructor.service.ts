@@ -28,4 +28,28 @@ export class InstructorService {
   getToken() {
     return localStorage.getItem('instructorToken')
   }
+
+  addCourse(data: any) {
+    const { title, description, thumbnail, previewVideo, level, prize, offerPrize } = data
+
+    var formData: any = new FormData()
+    formData.append('title', title)
+    formData.append('description', description)
+    formData.append('thumbnail', thumbnail)
+    formData.append('previewVideo', previewVideo)
+    formData.append('level', level)
+    formData.append('prize', prize)
+    formData.append('offerPrize', offerPrize)
+
+    console.log(formData);
+
+    return this.httpClient.post(this.url + '/instructor/courses/addCourse', formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+
+
+
+
+  }
 }

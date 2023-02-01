@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
 import { AdminLoginComponent } from './components/admin/admin-login/admin-login.component';
+import { InstructorAddCourseComponent } from './components/instructor/instructor-add-course/instructor-add-course.component';
+import { InstructorCoursesComponent } from './components/instructor/instructor-courses/instructor-courses.component';
 import { InstructorHomeComponent } from './components/instructor/instructor-home/instructor-home.component';
 import { InstructorLoginComponent } from './components/instructor/instructor-login/instructor-login.component';
 import { InstructorRegisterComponent } from './components/instructor/instructor-register/instructor-register.component';
@@ -38,6 +40,16 @@ const routes: Routes = [
   {
     path: 'instructor',
     component: InstructorHomeComponent,
+    canActivate: [InstructorAuthGuard]
+  },
+  {
+    path: 'instructor/courses',
+    component: InstructorCoursesComponent,
+    canActivate: [InstructorAuthGuard]
+  },
+  {
+    path: 'instructor/courses/addCourse',
+    component: InstructorAddCourseComponent,
     canActivate: [InstructorAuthGuard]
   },
   {

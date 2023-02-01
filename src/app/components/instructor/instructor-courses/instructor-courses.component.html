@@ -1,0 +1,123 @@
+<app-instructor-header></app-instructor-header>
+<div class="container mt-5">
+  <div class="row mb-2">
+    <div class="col-8">
+      <h1>Manage Courses</h1>
+    </div>
+    <div class="col-4 d-flex flex-row-reverse">
+      <button class="btn btn-primary m-2" routerLink="/instructor/courses/addCourse">Add Courses</button>
+    </div>
+  </div>
+  <div class="row mb-5">
+    <div class=" col-md-8 col-6" >
+      <form class="d-flex me-2">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+    <div class=" col-md-4 col-6 d-flex flex-row-reverse">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <fa-icon [icon]="sortIcon"></fa-icon>
+          Sort
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="large-screen">
+    <div class="card mb-3" style="max-width: 100%;">
+      <div class="row g-0">
+        <div class="col-md-4 col-lg-3">
+          <img src="https://i.ytimg.com/vi/nLw1RNvfElg/hqdefault.jpg"  class=" img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9">
+          <div class="card-body">
+            <h5 class="card-title">Title</h5>
+            <p class="card-text">Status : </p>
+            <p class="card-text">No. of Modules :  </p>
+            <p class="card-text"><small class="text-muted">Duration :</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-3" style="max-width: 100%;">
+      <div class="row g-0">
+        <div class="col-md-4 col-lg-3">
+          <img src="https://i.ytimg.com/vi/nLw1RNvfElg/hqdefault.jpg"  class=" img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8 col-lg-9">
+          <div class="card-body">
+            <h5 class="card-title">Title</h5>
+            <p class="card-text">Status : </p>
+            <p class="card-text">No. of Modules :  </p>
+            <p class="card-text"><small class="text-muted">Duration :</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="small-screen">
+    <div class="row d-flex justify-content-sm-center">
+      <div class="col-6 col-md-6">
+        <div class="card">
+          <img src="https://i.ytimg.com/vi/nLw1RNvfElg/hqdefault.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Title</h5>
+            <p class="card-text">Status : </p>
+            <p class="card-text">No. of Modules :  </p>
+            <p class="card-text"><small class="text-muted">Duration :</small></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-6">
+        <div class="card">
+          <img src="https://i.ytimg.com/vi/nLw1RNvfElg/hqdefault.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title m-1">Title</h5>
+            <p class="card-text m-1">Status : </p>
+            <p class="card-text m-1">No. of Modules :  </p>
+            <p class="card-text m-1"><small class="text-muted">Duration :</small></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#ID</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">MODULES</th>
+            <th scope="col">TYPE</th>
+            <th scope="col">PRICE</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table> -->
+</div>

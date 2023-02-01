@@ -20,6 +20,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserServices } from './services/user.service';
 import { UserAuthGuard } from './guard/userAuth.guard';
 import { TokenIntercepterService } from './services/token-intercepter.service';
+import { InstructorCoursesComponent } from './components/instructor/instructor-courses/instructor-courses.component';
+import { InstructorAddCourseComponent } from './components/instructor/instructor-add-course/instructor-add-course.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { TokenIntercepterService } from './services/token-intercepter.service';
     AdminHeaderComponent,
     AdminLoginComponent,
     AdminHomeComponent,
+    InstructorCoursesComponent,
+    InstructorAddCourseComponent,
 
 
   ],
@@ -44,7 +48,7 @@ import { TokenIntercepterService } from './services/token-intercepter.service';
     FontAwesomeModule,
     NgbModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [UserServices, UserAuthGuard,
     {

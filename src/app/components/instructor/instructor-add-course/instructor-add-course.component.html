@@ -1,0 +1,126 @@
+<app-instructor-header></app-instructor-header>
+<div class="container mt-5">
+    <h6 class="text-secondary">Manage Courses > Add Course</h6>
+    <h1>Add Course</h1>
+    <div class="mt-5">
+        <form [formGroup]="addCourseForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <label for="titleLabel" class="form-label">Give a title</label>
+                    <input [ngClass]="{
+                        'is-invalid':
+                          submitted && addCourseForm.controls['title'].errors
+                      }" formControlName="title" type="text" class="form-control" id="titleInput">
+                    <p class="text-danger" *ngIf="submitted && addCourseForm.controls['title'].errors?.['required']">
+                        Fill this field.
+                    </p>
+                    <p class="text-danger" *ngIf="submitted && addCourseForm.controls['title'].errors?.['minlength']">
+                        Minimum 8 characters required.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <label for="titleLabel" class="form-label">Select a Thumbnail Image</label>
+                    <input [ngClass]="{
+                        'is-invalid':
+                          submitted && addCourseForm.controls['thumbnail'].errors
+                      }" type="file" (change)="thumbnailSelection($event)" accept="image/png, image/jpeg, image/jpg"
+                        class="form-control" id="thmbnailImageInput" formControlName="thumbnail">
+                    <p class="text-danger"
+                        *ngIf="submitted && addCourseForm.controls['thumbnail'].errors?.['required']">
+                        Fill this field.
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-12">
+                    <label for="descriptionLabel" class="form-label">Description</label>
+                    <textarea [ngClass]="{
+                        'is-invalid':
+                          submitted && addCourseForm.controls['description'].errors
+                      }" formControlName="description" class="form-control" id="descriptionTextArea"
+                        rows="10"></textarea>
+                    <p class="text-danger"
+                        *ngIf="submitted && addCourseForm.controls['description'].errors?.['required']">
+                        Fill this field.
+                    </p>
+                    <p class="text-danger"
+                        *ngIf="submitted && addCourseForm.controls['description'].errors?.['minlength']">
+                        Minimum 15 characters required.
+                    </p>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <div class="col-12">
+                        <label for="titleLabel" class="form-label">Preview Video</label>
+                        <input [ngClass]="{
+                            'is-invalid':
+                              submitted && addCourseForm.controls['previewVideo'].errors
+                          }" (change)="previewVideoSelection($event)" type="file"
+                            accept="video/mp4, video/mov, video/mkv, video/aoi" class="form-control"
+                            id="thmbnailImageInput" formControlName="previewVideo">
+                        <p class="text-danger"
+                            *ngIf="submitted && addCourseForm.controls['previewVideo'].errors?.['required']">
+                            Fill this field.
+                        </p>
+                    </div>
+                    <label for="CourseLevelLabel" class="form-label col-4 col-md-4 col-lg-3 mt-2">Course Level</label>
+                    <div class="row mt-2 ">
+                        <div class="col-12 col-md-12 col-lg-12 d-flex justify-content-between">
+                            <div class="me-1">
+                                <input type="radio" formControlName="level" value="Beginner" class="btn-check"
+                                    id="success-outlined" autocomplete="off">
+                                <label class="btn btn-outline-success" for="success-outlined">Beginner</label>
+                            </div>
+                            <div class="me-1">
+                                <input type="radio" class="btn-check" formControlName="level" value="Intermidiate"
+                                    id="warning-outlined" autocomplete="off">
+                                <label class="btn btn-outline-warning" for="warning-outlined">Intermidiate</label>
+                            </div>
+                            <div class="me-1">
+                                <input type="radio" class="btn-check" formControlName="level" value="Proffessional"
+                                    id="danger-outlined" autocomplete="off">
+                                <label class="btn btn-outline-danger" for="danger-outlined">Proffessional</label>
+                            </div>
+                            <p class="text-danger"
+                                *ngIf="submitted && addCourseForm.controls['level'].errors?.['required']">
+                                Select an option.
+                            </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="CourseLevelLabel" class="form-label mt-2">Prize</label>
+                                <input [ngClass]="{
+                                    'is-invalid':
+                                      submitted && addCourseForm.controls['prize'].errors
+                                  }" type="number" formControlName="prize" class="form-control" id="titleInput">
+                                <p class="text-danger"
+                                    *ngIf="submitted && addCourseForm.controls['prize'].errors?.['required']">
+                                    Fill this field.
+                                </p>
+                            </div>
+                            <div class="col-6">
+                                <label for="CourseLevelLabel" class="form-label mt-2">Offer Prize</label>
+                                <input [ngClass]="{
+                                    'is-invalid':
+                                      submitted && addCourseForm.controls['offerPrize'].errors
+                                  }" type="number" formControlName="offerPrize" class="form-control" id="titleInput">
+                                <p class="text-danger"
+                                    *ngIf="submitted && addCourseForm.controls['offerPrize'].errors?.['required']">
+                                    Fill this field.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4 mb-4">Create Course</button>
+        </form>
+    </div>
+    <div *ngIf="progress > 0">
+        <p>Creating new Course.... Please wait</p>
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                [style.width.%]="progress" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <p>{{progress}}% completed</p>
+    </div>
+</div>
