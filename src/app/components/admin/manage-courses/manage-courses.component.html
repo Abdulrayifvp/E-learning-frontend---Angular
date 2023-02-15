@@ -1,0 +1,247 @@
+<app-admin-header></app-admin-header>
+<div class="container mt-5">
+    <h1>Manage Courses</h1>
+    <div class="mt-5">
+        <ul class="nav nav-tabs mb-2" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button (click)="getAllCourses()" class="nav-link active" id="all-tab" data-bs-toggle="tab"
+                    data-bs-target="#all" type="button" role="tab" aria-controls="all"
+                    aria-selected="false">All</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button (click)="getVerifiedCourses()" class="nav-link" id="verified-tab" data-bs-toggle="tab"
+                    data-bs-target="#verified" type="button" role="tab" aria-controls="verified"
+                    aria-selected="true">Verified Courses</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button (click)="getPendingCourse()" class="nav-link" id="pending-tab" data-bs-toggle="tab"
+                    data-bs-target="#pending" type="button" role="tab" aria-controls="pending"
+                    aria-selected="false">Verification Pending</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button (click)="getVerifingCourses()" class="nav-link" id="processing-tab" data-bs-toggle="tab"
+                    data-bs-target="#processing" type="button" role="tab" aria-controls="processing"
+                    aria-selected="false">Under
+                    Verification</button>
+            </li>
+
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                <div *ngIf="courses.length === 0" class="col-12" style="text-align: center;"><b>No courses</b>
+                </div>
+                <div *ngFor="let course of courses" class="card mb-3" style="max-width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-4 col-lg-3">
+                            <img [src]='course.thumbnail' style="height: 250px; object-fit: cover;"
+                                class=" img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8 col-lg-9">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h5 class="m-1 card-title fw-bolder">{{course.title}}</h5>
+                                        <p class="m-1 fw-normal">{{course.description}}</p>
+                                        <p *ngIf="course.level == 'Beginner'" class="m-1 ">Level : <span
+                                                class="text-success">{{course.level}}</span></p>
+                                        <p *ngIf="course.level == 'Intermidiate'" class="m-1 ">Level : <span
+                                                class="text-warning">{{course.level}}</span></p>
+                                        <p *ngIf="course.level == 'Professional'" class="m-1 ">Level : <span
+                                                class="text-danger">{{course.level}}</span></p>
+                                        <p *ngIf="course.adminVerification == 'pending'" class="m-1">Verification :
+                                            <span class="text-danger">Pending</span>
+                                        </p>
+                                        <p *ngIf="course.adminVerification == 'verifing'" class="m-1">Verification
+                                            : <span class="text-primary">Verifing</span></p>
+                                        <p *ngIf="course.adminVerification == 'verified'" class="m-1">Verification :
+                                            <span class="text-success">Completed</span>
+                                        </p>
+                                        <p class="m-1"><small class="text-muted">Duration :</small></p>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="row">
+                                            <div class="col-12 fw-bold m-2">
+                                                Prize : <span class="text-danger text-decoration-line-through"><span
+                                                        class="text-dark">&#8377;
+                                                        {{course.prize}}</span></span>
+                                            </div>
+                                            <div class="col-12 fw-bold m-2">
+                                                Offer Prize : &#8377; {{course.offerPrize}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5">
+                                            <button [routerLink]="['/admin/manageCourses/',course._id]"
+                                                class=" col-8 btn btn-primary mt-1">Manage
+                                                Course</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="verified" role="tabpanel" aria-labelledby="verified-tab">
+                <div *ngIf="courses.length === 0" class="col-12" style="text-align: center;"><b>No courses</b>
+                </div>
+                <div *ngFor="let course of courses" class="card mb-3" style="max-width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-4 col-lg-3">
+                            <img [src]='course.thumbnail' style="height: 250px; object-fit: cover;"
+                                class=" img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8 col-lg-9">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h5 class="m-1 card-title fw-bolder">{{course.title}}</h5>
+                                        <p class="m-1 fw-normal">{{course.description}}</p>
+                                        <p *ngIf="course.level == 'Beginner'" class="m-1 ">Level : <span
+                                                class="text-success">{{course.level}}</span></p>
+                                        <p *ngIf="course.level == 'Intermidiate'" class="m-1 ">Level : <span
+                                                class="text-warning">{{course.level}}</span></p>
+                                        <p *ngIf="course.level == 'Professional'" class="m-1 ">Level : <span
+                                                class="text-danger">{{course.level}}</span></p>
+                                        <p *ngIf="course.adminVerification == 'pending'" class="m-1">Verification :
+                                            <span class="text-danger">Pending</span>
+                                        </p>
+                                        <p *ngIf="course.adminVerification == 'verifing'" class="m-1">Verification
+                                            : <span class="text-primary">Verifing</span></p>
+                                        <p *ngIf="course.adminVerification == 'verified'" class="m-1">Verification :
+                                            <span class="text-success">Completed</span>
+                                        </p>
+                                        <p class="m-1"><small class="text-muted">Duration :</small></p>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="row">
+                                            <div class="col-12 fw-bold m-2">
+                                                Prize : <span class="text-danger text-decoration-line-through"><span
+                                                        class="text-dark">&#8377;
+                                                        {{course.prize}}</span></span>
+                                            </div>
+                                            <div class="col-12 fw-bold m-2">
+                                                Offer Prize : &#8377; {{course.offerPrize}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5">
+                                            <button [routerLink]="['/admin/manageCourses/',course._id]"
+                                                class="col-8 btn btn-primary mt-1">Manage Course</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                <div *ngIf="courses.length === 0" class="col-12" style="text-align: center;"><b>No courses</b>
+                </div>
+                <div *ngFor="let course of courses" class="card mb-3" style="max-width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-4 col-lg-3">
+                            <img [src]='course.thumbnail' style="height: 250px; object-fit: cover;"
+                                class=" img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8 col-lg-9">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h5 class="m-1 card-title fw-bolder">{{course.title}}</h5>
+                                        <p class="m-1 fw-normal">{{course.description}}</p>
+                                        <p *ngIf="course.level == 'Beginner'" class="m-1 ">Level : <span
+                                                class="text-success">{{course.level}}</span></p>
+                                        <p *ngIf="course.level == 'Intermidiate'" class="m-1 ">Level : <span
+                                                class="text-warning">{{course.level}}</span></p>
+                                        <p *ngIf="course.level == 'Professional'" class="m-1 ">Level : <span
+                                                class="text-danger">{{course.level}}</span></p>
+                                        <p *ngIf="course.adminVerification == 'pending'" class="m-1">Verification :
+                                            <span class="text-danger">Pending</span>
+                                        </p>
+                                        <p *ngIf="course.adminVerification == 'verifing'" class="m-1">Verification
+                                            : <span class="text-primary">Verifing</span></p>
+                                        <p *ngIf="course.adminVerification == 'verified'" class="m-1">Verification :
+                                            <span class="text-success">Completed</span>
+                                        </p>
+                                        <p class="m-1"><small class="text-muted">Duration :</small></p>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="row">
+                                            <div class="col-12 fw-bold m-2">
+                                                Prize : <span class="text-danger text-decoration-line-through"><span
+                                                        class="text-dark">&#8377;
+                                                        {{course.prize}}</span></span>
+                                            </div>
+                                            <div class="col-12 fw-bold m-2">
+                                                Offer Prize : &#8377; {{course.offerPrize}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5">
+                                            <button [routerLink]="['/admin/manageCourses/',course._id]"
+                                                class="col-8 btn btn-primary mt-1">Manage Course</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="processing" role="tabpanel" aria-labelledby="processing-tab">
+                <div *ngIf="courses.length === 0" class="col-12" style="text-align: center;"><b>No courses</b>
+                </div>
+                <div *ngFor="let course of courses" class="card mb-3" style="max-width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-4 col-lg-3">
+                            <img [src]='course.thumbnail' style="height: 250px; object-fit: cover;"
+                                class=" img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8 col-lg-9">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <h5 class="m-1 card-title fw-bolder">{{course.title}}</h5>
+                                        <p class="m-1 fw-normal">{{course.description}}</p>
+                                        <p *ngIf="course.level == 'Beginner'" class="m-1 ">Level : <span
+                                                class="text-success">{{course.level}}</span></p>
+                                        <p *ngIf="course.level == 'Intermidiate'" class="m-1 ">Level : <span
+                                                class="text-warning">{{course.level}}</span></p>
+                                        <p *ngIf="course.level == 'Professional'" class="m-1 ">Level : <span
+                                                class="text-danger">{{course.level}}</span></p>
+                                        <p *ngIf="course.adminVerification == 'pending'" class="m-1">Verification :
+                                            <span class="text-danger">Pending</span>
+                                        </p>
+                                        <p *ngIf="course.adminVerification == 'verifing'" class="m-1">Verification
+                                            : <span class="text-primary">Verifing</span></p>
+                                        <p *ngIf="course.adminVerification == 'verified'" class="m-1">Verification :
+                                            <span class="text-success">Completed</span>
+                                        </p>
+                                        <p class="m-1"><small class="text-muted">Duration :</small></p>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="row">
+                                            <div class="col-12 fw-bold m-2">
+                                                Prize : <span class="text-danger text-decoration-line-through"><span
+                                                        class="text-dark">&#8377;
+                                                        {{course.prize}}</span></span>
+                                            </div>
+                                            <div class="col-12 fw-bold m-2">
+                                                Offer Prize : &#8377; {{course.offerPrize}}
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5">
+                                            <button [routerLink]="['/admin/manageCourses/',course._id]"
+                                                class="col-8 btn btn-primary mt-1">Manage Course</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

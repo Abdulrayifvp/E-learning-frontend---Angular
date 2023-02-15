@@ -15,6 +15,10 @@ export class InstructorService {
     })
   }
 
+  logout() {
+    return localStorage.removeItem('instructorToken')
+  }
+
   login(data: object) {
     return this.httpClient.post(this.url + "/instructor/login", data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
@@ -29,7 +33,9 @@ export class InstructorService {
     return localStorage.getItem('instructorToken')
   }
 
+
   addCourse(data: any) {
+
     const { title, description, thumbnail, previewVideo, level, prize, offerPrize } = data
 
     var formData: any = new FormData()
@@ -40,16 +46,38 @@ export class InstructorService {
     formData.append('level', level)
     formData.append('prize', prize)
     formData.append('offerPrize', offerPrize)
-
-    console.log(formData);
+    formData.append('instructorToken', this.getToken())
 
     return this.httpClient.post(this.url + '/instructor/courses/addCourse', formData, {
       reportProgress: true,
       observe: 'events'
     })
-
-
-
-
   }
+
+  addModule(data: any, id: string) {
+    const { title, description, note, moduleVideo } = data
+
+
+    var formData: any = new FormData()
+    formData.append('title', title)
+    formData.append('description', description)
+    formData.append('note', note)
+    formData.append('moduleVideo', moduleVideo)
+
+
+
+    return this.httpClient.post(this.url + '/instructor/courses/' + id + '/addModule', formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+  }
+
+  fetchCourses() {
+    return this.httpClient.get(this.url + '/instructor/courses/')
+  }
+
+  getCourse(id: string) {
+    return this.httpClient.get(this.url + '/instructor/courses/' + id)
+  }
+
 }
