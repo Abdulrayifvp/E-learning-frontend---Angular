@@ -34,12 +34,14 @@ export class InstructorLoginComponent implements OnInit {
       password: formData.password
     }
 
-    this.instructorService.login(data).subscribe((response: any) => {
-      localStorage.setItem('instructorToken', "" + response)
-      this.router.navigate(['/instructor/'])
-
-    }, (err) => {
-      this.errorMessage = err.error
+    this.instructorService.login(data).subscribe({
+      next: (response) => {
+        localStorage.setItem('instructorToken', "" + response)
+        this.router.navigate(['/instructor/'])
+      },
+      error: (err) => {
+        this.errorMessage = err
+      }
     })
   }
 

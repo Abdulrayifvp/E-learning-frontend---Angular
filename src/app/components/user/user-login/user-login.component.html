@@ -4,77 +4,43 @@
       <div class="col-12 col-md-8 col-lg-5">
         <div class="card bg-white">
           <div class="card-body p-5">
-            <form
-              class="mb-3 mt-md-4"
-              [formGroup]="loginForm"
-              (ngSubmit)="onSubmit()"
-            >
+            <form class="mb-3 mt-md-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="row mb-5">
-                <div class="col-9">
+                <div class="col-8">
                   <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
                 </div>
-                <div class="col-3">
-                  <a class="link-dark" href="" routerLink="/"
-                    ><fa-icon [icon]="faArrowLeft"></fa-icon> Home
+                <div class="col-4">
+                  <a class="link-dark" href="" routerLink="/"><fa-icon [icon]="faArrowLeft"></fa-icon> Home
                   </a>
                 </div>
               </div>
               <p class="text-danger text-center">{{ errorMessage }}</p>
               <div class="mb-3">
-                <input
-                  formControlName="email"
-                  type="email"
-                  class="form-control"
-                  id="email"
-                  placeholder="Email"
+                <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email"
                   [ngClass]="{
                     'is-invalid':
                       submitted && loginForm.controls['email'].errors
-                  }"
-                />
-                <p
-                  class="text-danger"
-                  *ngIf="submitted && loginForm.controls['email'].errors?.['email']"
-                >
+                  }" />
+                <p class="text-danger" *ngIf="submitted && loginForm.controls['email'].errors?.['email']">
                   Invalid email.
                 </p>
-                <p
-                  class="text-danger"
-                  *ngIf="submitted && loginForm.controls['email'].errors?.['required']"
-                >
+                <p class="text-danger" *ngIf="submitted && loginForm.controls['email'].errors?.['required']">
                   This field is required.
                 </p>
               </div>
               <div class="mb-3">
-                <input
-                  type="password"
-                  class="form-control"
-                  id="password"
-                  placeholder="Password"
-                  formControlName="password"
-                  [ngClass]="{
+                <input type="password" class="form-control" id="password" placeholder="Password"
+                  formControlName="password" [ngClass]="{
                     'is-invalid':
                       submitted && loginForm.controls['password'].errors
-                  }"
-                />
-                <p
-                  class="text-danger"
-                  *ngIf="submitted && loginForm.controls['password'].errors?.['minlength']"
-                >
+                  }" />
+                <p class="text-danger" *ngIf="submitted && loginForm.controls['password'].errors?.['minlength']">
                   Password must be minimum 8 characters.
                 </p>
-                <p
-                  class="text-danger"
-                  *ngIf="submitted && loginForm.controls['password'].errors?.['required']"
-                >
+                <p class="text-danger" *ngIf="submitted && loginForm.controls['password'].errors?.['required']">
                   This field is required.
                 </p>
               </div>
-              <p class="small">
-                <a class="text-primary" href="forget-password.html"
-                  >Forgot password?</a
-                >
-              </p>
               <div class="d-grid mt-5">
                 <button class="btn btn-outline-dark" type="submit">
                   Login
@@ -82,20 +48,12 @@
               </div>
             </form>
             <div>
-              <p class="mb-0 text-center">
-                Don't have an account?
-                <a href="" routerLink="/register" class="text-primary fw-bold"
-                  >Sign Up</a
-                >
+              <p class="mb-0 text-center"><small>Don't have an account?
+                  <a href="" routerLink="/register" class="text-primary fw-bold">Sign Up</a></small>
+
               </p>
-              <p class="mb-0 text-center">
-                Teach on eduCart
-                <a
-                  href=""
-                  routerLink="/instructor/login"
-                  class="text-primary fw-bold"
-                  >Login as instructor</a
-                >
+              <p class="mb-0 text-center"><small>Teach on eduCart
+                  <a href="" routerLink="/instructor/login" class="text-primary fw-bold">Login as instructor</a></small>
               </p>
             </div>
           </div>

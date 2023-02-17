@@ -12,9 +12,9 @@ import { AdminService } from 'src/app/services/admin.service';
 export class AdminLoginComponent implements OnInit {
 
   faArrowLeft = faArrowLeft
-  errorMessage: string = ''
+  errorMessage!: string
   loginForm !: FormGroup
-  submitted = false
+  submitted: boolean = false
   constructor(private formBuilder: FormBuilder, private adminService: AdminService, private router: Router) { }
 
   ngOnInit(): void {
@@ -35,16 +35,16 @@ export class AdminLoginComponent implements OnInit {
       password: formData.password
     }
 
-    this.adminService.login(data).subscribe((response: any) => {
-      console.log(response);
 
-      localStorage.setItem('adminToken', "" + response)
-      this.router.navigate(['/admin/'])
-
-    }, (err) => {
-      console.log(err);
-
-      this.errorMessage = err.error
+    this.adminService.login(data).subscribe({
+      next: (response) => {
+        localStorage.setItem('adminToken', "" + response)
+        this.router.navigate(['/admin/'])
+      },
+      error: (err) => {
+        this.errorMessage = err
+      }
     })
   }
+
 }

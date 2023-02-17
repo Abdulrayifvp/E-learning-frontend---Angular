@@ -1,0 +1,81 @@
+<app-admin-header></app-admin-header>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 col-12">
+            <div class="col-12">
+                <vg-player>
+                    <vg-overlay-play></vg-overlay-play>
+                    <vg-buffering></vg-buffering>
+
+                    <vg-scrub-bar>
+                        <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                        <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                    </vg-scrub-bar>
+
+                    <vg-controls [vgAutohide]="true" [vgAutohideTime]="1.5">
+                        <vg-play-pause></vg-play-pause>
+                        <vg-playback-button></vg-playback-button>
+
+                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+                        <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+                        <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+                        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+                        <!-- <vg-track-selector></vg-track-selector> -->
+                        <vg-mute></vg-mute>
+                        <vg-volume></vg-volume>
+
+                        <vg-fullscreen></vg-fullscreen>
+                    </vg-controls>
+                    <video [src]="video" [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" autoplay>
+                        <!-- <track kind="subtitles" label="English" [src]='subtitle' srclang="en" default> -->
+                    </video>
+                </vg-player>
+            </div>
+            <div class="mt-2">
+                <h2>{{course.title}}</h2>
+                <p>
+                    {{course.description}}
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4 col-12">
+            <h5>Verification Status</h5>
+            <select (change)="changeStatus($event,course._id)" class="form-select" aria-label="Default select example">
+                <option *ngIf="course.adminVerification === 'pending'" selected value="pending">Pending</option>
+                <option *ngIf="course.adminVerification !== 'pending'" value="pending">Pending</option>
+                <option *ngIf="course.adminVerification === 'verified'" selected value="verified">Verified</option>
+                <option *ngIf="course.adminVerification !== 'verified'" value="verified">Verified</option>
+                <option *ngIf="course.adminVerification === 'verifing'" selected value="verifing">verifing</option>
+                <option *ngIf="course.adminVerification !== 'verifing'" value="verifing">verifing</option>
+            </select>
+            <div class="mt-3">
+                <h5>Course Preview</h5>
+                <div class="list-group">
+                    <a (click)="playPreview()" class="list-group-item list-group-item-action"
+                        [ngClass]="{'active': activeModuleId === course._id}" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"># Overview</h5>
+                        </div>
+                        <p class="mb-1">Get a Complete Overview of the Course</p>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-3">
+                <h5>Modules</h5>
+                <div class="list-group">
+                    <a (click)="changeVideo(course._id,indexOfelement)"
+                        *ngFor="let module of course.modules;let indexOfelement=index;"
+                        class="list-group-item list-group-item-action"
+                        [ngClass]="{'active': activeModuleId === module._id}" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">#{{indexOfelement+1}} {{module.title}}</h5>
+                        </div>
+                        <p *ngIf="activeModuleId === module._id" class="mb-1">{{module.description}}</p>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>

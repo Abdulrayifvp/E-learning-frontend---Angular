@@ -1,6 +1,24 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { course } from '../models/course.model';
+
+type AddCoursedata = {
+  title: string,
+  description: string,
+  thumbnail: string,
+  previewVideo: string,
+  level: string,
+  prize: string,
+  offerPrize: string
+}
+
+type addModuledata = {
+  title: string,
+  description: string,
+  note: string,
+  moduleVideo: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +31,10 @@ export class InstructorService {
     return this.httpClient.post(this.url + "/instructor/register", data, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     })
+  }
+
+  logout() {
+    return localStorage.removeItem('instructorToken')
   }
 
   login(data: object) {
@@ -29,7 +51,9 @@ export class InstructorService {
     return localStorage.getItem('instructorToken')
   }
 
-  addCourse(data: any) {
+
+  addCourse(data: AddCoursedata) {
+
     const { title, description, thumbnail, previewVideo, level, prize, offerPrize } = data
 
     var formData: any = new FormData()
@@ -40,16 +64,38 @@ export class InstructorService {
     formData.append('level', level)
     formData.append('prize', prize)
     formData.append('offerPrize', offerPrize)
-
-    console.log(formData);
+    formData.append('instructorToken', this.getToken())
 
     return this.httpClient.post(this.url + '/instructor/courses/addCourse', formData, {
       reportProgress: true,
       observe: 'events'
     })
-
-
-
-
   }
+
+  addModule(data: addModuledata, id: string) {
+    const { title, description, note, moduleVideo } = data
+
+
+    var formData: any = new FormData()
+    formData.append('title', title)
+    formData.append('description', description)
+    formData.append('note', note)
+    formData.append('moduleVideo', moduleVideo)
+
+
+
+    return this.httpClient.post(this.url + '/instructor/courses/' + id + '/addModule', formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+  }
+
+  fetchCourses() {
+    return this.httpClient.get<course[]>(this.url + '/instructor/courses/')
+  }
+
+  getCourse(id: string) {
+    return this.httpClient.get<course>(this.url + '/instructor/courses/' + id)
+  }
+
 }
