@@ -1,5 +1,6 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { course } from 'src/app/models/course.model';
 import { UserServices } from 'src/app/services/user.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserServices } from 'src/app/services/user.service';
 })
 export class UserPurchaseSuccessPageComponent implements OnInit {
 
-  course: any
+  course!: course
 
   constructor(private zone: NgZone, private route: ActivatedRoute, private userService: UserServices, private router: Router) { }
 
@@ -17,8 +18,9 @@ export class UserPurchaseSuccessPageComponent implements OnInit {
   }
 
   redirect() {
-    this.course = this.route.params.subscribe(params => {
-      this.userService.getCourse(params['id']).subscribe((course: any) => {
+    this.route.params.subscribe(params => {
+      this.userService.getCourse(params['id']).subscribe((course: course) => {
+        this.course = course
         this.zone.run(() => {
           this.router.navigate(['courses/' + course._id])
         });

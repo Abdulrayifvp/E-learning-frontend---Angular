@@ -22,9 +22,11 @@ import { UserViewCourseComponent } from './components/user/user-view-course/user
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { InstructorAuthGuard } from './guards/instructor-auth.guard';
 import { UserAuthGuard } from './guards/userAuth.guard';
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 
 const routes: Routes = [
+
   {
     path: '',
     component: UserHomeComponent,
@@ -112,6 +114,10 @@ const routes: Routes = [
     path: 'admin/manageCourses/:id',
     component: CourseViewComponent,
     canActivate: [AdminAuthGuard]
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent
   },
 
 

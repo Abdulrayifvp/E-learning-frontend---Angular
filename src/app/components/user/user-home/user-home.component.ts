@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { course } from 'src/app/models/course.model';
 import { UserServices } from 'src/app/services/user.service';
 
 @Component({
@@ -8,17 +9,20 @@ import { UserServices } from 'src/app/services/user.service';
 })
 export class UserHomeComponent implements OnInit {
 
-  courses: any
-  purchasedCourses: any
+  courses!: course[]
+  purchasedCourses!: string[]
+
 
   constructor(private userService: UserServices) { }
 
   ngOnInit(): void {
-    this.userService.getAllCourses().subscribe((result: any) => {
+    this.userService.getAllCourses().subscribe((result: course[]) => {
       this.courses = result
     })
     if (this.userService.isLoggedIn() === true) {
-      this.userService.getPurchasedCourse().subscribe((result: any) => {
+      this.userService.getPurchasedCourse().subscribe((result: string[]) => {
+        console.log(result);
+
         this.purchasedCourses = result
       })
     } else {

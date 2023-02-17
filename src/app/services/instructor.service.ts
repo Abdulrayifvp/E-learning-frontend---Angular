@@ -1,6 +1,24 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { course } from '../models/course.model';
+
+type AddCoursedata = {
+  title: string,
+  description: string,
+  thumbnail: string,
+  previewVideo: string,
+  level: string,
+  prize: string,
+  offerPrize: string
+}
+
+type addModuledata = {
+  title: string,
+  description: string,
+  note: string,
+  moduleVideo: string
+}
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +52,7 @@ export class InstructorService {
   }
 
 
-  addCourse(data: any) {
+  addCourse(data: AddCoursedata) {
 
     const { title, description, thumbnail, previewVideo, level, prize, offerPrize } = data
 
@@ -54,7 +72,7 @@ export class InstructorService {
     })
   }
 
-  addModule(data: any, id: string) {
+  addModule(data: addModuledata, id: string) {
     const { title, description, note, moduleVideo } = data
 
 
@@ -73,11 +91,11 @@ export class InstructorService {
   }
 
   fetchCourses() {
-    return this.httpClient.get(this.url + '/instructor/courses/')
+    return this.httpClient.get<course[]>(this.url + '/instructor/courses/')
   }
 
   getCourse(id: string) {
-    return this.httpClient.get(this.url + '/instructor/courses/' + id)
+    return this.httpClient.get<course>(this.url + '/instructor/courses/' + id)
   }
 
 }

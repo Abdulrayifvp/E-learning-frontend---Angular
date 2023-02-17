@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { faSort } from '@fortawesome/free-solid-svg-icons';
 import { InstructorService } from 'src/app/services/instructor.service';
+import { course } from 'src/app/models/course.model';
 
 
 @Component({
@@ -10,12 +11,12 @@ import { InstructorService } from 'src/app/services/instructor.service';
 })
 export class InstructorCoursesComponent implements OnInit {
   sortIcon = faSort;
-  courses: any
+  courses!: course[]
 
   constructor(private instructorService: InstructorService) { }
 
   ngOnInit(): void {
-    this.instructorService.fetchCourses().subscribe((result) => {
+    this.instructorService.fetchCourses().subscribe((result: course[]) => {
       this.courses = result
     })
 

@@ -43,9 +43,6 @@
                                         </div>
                                     </div>
                                     <div class="row mt-5">
-                                        <a [routerLink]="['/courses/checkout',course._id]"
-                                            *ngIf="!purchasedCourses.includes(course._id)"
-                                            class="btn btn-primary me-2">Enroll Now</a>
                                         <a [routerLink]="['/courses/',course._id]" class="mt-2 btn btn-success">View
                                             Course</a>
                                     </div>
@@ -84,9 +81,6 @@
                             <p class="col-12 m-1">Offer Prize : &#8377; {{course.offerPrize}}
                             </p>
                             <div class="col-12">
-                                <a [routerLink]="['/courses/checkout',course._id]"
-                                    *ngIf="!purchasedCourses.includes(course._id)"
-                                    class="col-12 btn btn-primary me-2">Enroll Now</a>
                                 <a [routerLink]="['/courses/',course._id]" class="col-12 mt-2 btn btn-success">View
                                     Course</a>
                             </div>

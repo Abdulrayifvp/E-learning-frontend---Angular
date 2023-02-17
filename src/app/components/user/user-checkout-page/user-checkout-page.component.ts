@@ -1,5 +1,9 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { course } from 'src/app/models/course.model';
+import { rzpOrderData } from 'src/app/models/rzpOrderData.model';
+import { rzpPaymentStatus } from 'src/app/models/rzpPaymentStatus.model';
+import { rzpSuccessHandler } from 'src/app/models/rzpSuccessHandler.model';
 import { UserServices } from 'src/app/services/user.service';
 
 @Component({
@@ -9,23 +13,18 @@ import { UserServices } from 'src/app/services/user.service';
 })
 export class UserCheckoutPageComponent implements OnInit {
 
-  course: any;
-  rzp1: any;
-  options: any
-
-
-
+  course!: course;
 
   constructor(private route: ActivatedRoute, private userService: UserServices, private router: Router, private zone: NgZone) { }
 
   ngOnInit(): void {
-    this.course = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.getCourseById(params['id'])
     })
   }
 
   getCourseById(id: string) {
-    this.userService.getCourse(id).subscribe((course: any) => {
+    this.userService.getCourse(id).subscribe((course: course) => {
       this.course = course
     })
   }
@@ -33,11 +32,11 @@ export class UserCheckoutPageComponent implements OnInit {
 
 
   checkout() {
-    this.userService.createOrder({ amount: this.course.offerPrize, }).subscribe((data: any) => {
-      let self = this.userService
-      let router = this.router
-      let course = this.course
-      this.options = {
+    this.userService.createOrder({ amount: this.course.offerPrize, }).subscribe((data: rzpOrderData) => {
+      const self = this.userService
+      const router = this.router
+      const course = this.course
+      const options = {
         "key": "rzp_test_RgCVtBX18ATpsX", // Enter the Key ID generated from the Dashboard
         "amount": data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
         "currency": "INR",
@@ -45,8 +44,10 @@ export class UserCheckoutPageComponent implements OnInit {
         "description": "Test Transaction",
         "image": "https://example.com/your_logo",
         "order_id": data.id,//This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-        "handler": function (response: any) {
-          self.paymentSuccess(response, course._id).subscribe((response: any) => {
+        "handler": function (response: rzpSuccessHandler) {
+          self.paymentSuccess(response, course._id).subscribe((response: rzpPaymentStatus) => {
+            console.log(response);
+
             if (response.status === true) {
               router.navigate(['courses/checkout/' + course._id + '/success'])
             } else {
@@ -69,14 +70,13 @@ export class UserCheckoutPageComponent implements OnInit {
         }
       };
 
-      this.rzp1 = new this.userService.nativeWindow.Razorpay(this.options);
-      this.rzp1.open();
-      const rzp = this.rzp1
+      const rzp1 = new this.userService.nativeWindow.Razorpay(options);
+      rzp1.open();
       const zone = this.zone
-      this.rzp1.on('payment.failed', function (response: any) {
+      rzp1.on('payment.failed', () => {
         zone.run(() => {
           router.navigate(['courses/checkout/' + course._id + '/failed'])
-          rzp.close()
+          rzp1.close()
         });
       });
     })

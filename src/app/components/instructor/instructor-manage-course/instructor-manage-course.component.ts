@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { course } from 'src/app/models/course.model';
 import { InstructorService } from 'src/app/services/instructor.service';
 
 @Component({
@@ -9,14 +10,14 @@ import { InstructorService } from 'src/app/services/instructor.service';
 })
 export class InstructorManageCourseComponent implements OnInit {
 
-  course: any;
-  video: any;
-  activeModuleId: any;
+  course!: course;
+  video!: string;
+  activeModuleId!: string;
 
   constructor(private route: ActivatedRoute, private instructorService: InstructorService) { }
 
   ngOnInit(): void {
-    this.course = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.getCourseById(params['id'])
 
     })
@@ -27,7 +28,7 @@ export class InstructorManageCourseComponent implements OnInit {
   }
 
   getCourseById(id: string) {
-    this.instructorService.getCourse(id).subscribe((course: any) => {
+    this.instructorService.getCourse(id).subscribe((course: course) => {
       this.course = course
       this.video = course.previewVideo
       this.activeModuleId = course._id
@@ -35,7 +36,7 @@ export class InstructorManageCourseComponent implements OnInit {
   }
 
   changeVideo(id: string, index: number) {
-    this.instructorService.getCourse(id).subscribe((course: any) => {
+    this.instructorService.getCourse(id).subscribe((course: course) => {
       this.video = course.modules[index].moduleVideo
       this.activeModuleId = course.modules[index]._id
     })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { course } from 'src/app/models/course.model';
 import { UserServices } from 'src/app/services/user.service';
 
 @Component({
@@ -9,10 +10,10 @@ import { UserServices } from 'src/app/services/user.service';
 export class UserPurchasedCoursesComponent implements OnInit {
 
   constructor(private userService: UserServices) { }
-  purchasedCourses: any = []
+  purchasedCourses !: course[]
 
   ngOnInit(): void {
-    this.userService.getPurchasedCourseDetailed().subscribe((result: any) => {
+    this.userService.getPurchasedCourseDetailed().subscribe((result: course[]) => {
       this.purchasedCourses = result
     })
   }

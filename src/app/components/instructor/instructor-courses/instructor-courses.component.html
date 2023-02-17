@@ -37,9 +37,9 @@
                     class="text-danger">{{course.level}}</span></p>
                 <p *ngIf="course.adminVerification == 'pending'" class="m-1">Verification : <span
                     class="text-danger">Pending</span></p>
-                <p *ngIf="course.adminVerification == 'onVerification'" class="m-1">Verification :<span
-                    class="text-primary">On Verification</span></p>
-                <p *ngIf="course.adminVerification == 'completed'" class="m-1">Verification : <span
+                <p *ngIf="course.adminVerification == 'verifing'" class="m-1">Verification :<span
+                    class="text-primary">verifing</span></p>
+                <p *ngIf="course.adminVerification == 'verified'" class="m-1">Verification : <span
                     class="text-success">Completed</span></p>
               </div>
               <div class="col-5">
@@ -78,12 +78,14 @@
                 class="text-warning">{{course.level}}</span></p>
             <p *ngIf="course.level == 'Professional'" class="m-1 ">Level : <span
                 class="text-danger">{{course.level}}</span></p>
-            <p *ngIf="course.adminVerification == 'pending'" class="m-1">Verification : <span
-                class="text-danger">Pending</span></p>
-            <p *ngIf="course.adminVerification == 'onVerification'" class="m-1">Verification :<span
-                class="text-primary">On Verification</span></p>
-            <p *ngIf="course.adminVerification == 'completed'" class="m-1">Verification : <span
-                class="text-success">Completed</span></p>
+            <p *ngIf="course.adminVerification == 'pending'" class="m-1">Verification :
+              <span class="text-danger">Pending</span>
+            </p>
+            <p *ngIf="course.adminVerification == 'verifing'" class="m-1">Verification
+              : <span class="text-primary">Verifing</span></p>
+            <p *ngIf="course.adminVerification == 'verified'" class="m-1">Verification :
+              <span class="text-success">Completed</span>
+            </p>
             <p class="col-12 m-1">Prize : <span class="text-danger text-decoration-line-through"><span
                   class="text-dark">&#8377;
                   {{course.prize}}</span></span>

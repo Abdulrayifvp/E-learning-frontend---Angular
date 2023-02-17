@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Validators } from '@angular/forms';
 import { UserServices } from 'src/app/services/user.service';
-import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -36,14 +36,14 @@ export class UserLoginComponent implements OnInit {
       password: formData.password
     }
 
-    this.userService.login(data).subscribe((response: any) => {
-      localStorage.setItem('userToken', "" + response)
-      this.router.navigate(['/'])
-
-    }, (err) => {
-      console.log(err);
-
-      this.errorMessage = err
+    this.userService.login(data).subscribe({
+      next: (response) => {
+        localStorage.setItem('userToken', "" + response)
+        this.router.navigate(['/'])
+      }, error: (err) => {
+        console.log(err);
+        this.errorMessage = err
+      }
     })
   }
 }

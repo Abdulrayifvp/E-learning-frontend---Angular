@@ -36,6 +36,7 @@ import { UserPurchaseSuccessPageComponent } from './components/user/user-purchas
 import { UserPurchaseFailedPageComponent } from './components/user/user-purchase-failed-page/user-purchase-failed-page.component';
 import { ErrorIntercepterService } from './services/error-intercepter.service';
 import { UserPurchasedCoursesComponent } from './components/user/user-purchased-courses/user-purchased-courses.component';
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { UserPurchasedCoursesComponent } from './components/user/user-purchased-
     UserPurchaseSuccessPageComponent,
     UserPurchaseFailedPageComponent,
     UserPurchasedCoursesComponent,
+    ErrorPageComponent,
 
 
   ],

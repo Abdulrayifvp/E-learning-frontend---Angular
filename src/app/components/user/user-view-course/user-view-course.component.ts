@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { course } from 'src/app/models/course.model';
 import { UserServices } from 'src/app/services/user.service';
 
 @Component({
@@ -9,22 +10,22 @@ import { UserServices } from 'src/app/services/user.service';
 })
 export class UserViewCourseComponent implements OnInit {
 
-  videoUrl: any
-  course: any
-  courseId: any
-  video: any;
-  activeModuleId: any;
-  purchasedCourses: any;
+  videoUrl!: string
+  course!: course
+  courseId!: string
+  video!: string;
+  activeModuleId!: string;
+  purchasedCourses!: string[];
 
 
   constructor(private route: ActivatedRoute, private userService: UserServices) { }
 
   ngOnInit(): void {
-    this.course = this.route.params.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.getCourseById(params['id'])
     })
     if (this.userService.isLoggedIn() === true) {
-      this.userService.getPurchasedCourse().subscribe((result: any) => {
+      this.userService.getPurchasedCourse().subscribe((result: string[]) => {
         this.purchasedCourses = result
       })
     } else {
@@ -34,7 +35,7 @@ export class UserViewCourseComponent implements OnInit {
   }
 
   getCourseById(id: string) {
-    this.userService.getCourse(id).subscribe((course: any) => {
+    this.userService.getCourse(id).subscribe((course: course) => {
       this.course = course
       this.video = course.previewVideo
       this.activeModuleId = course._id
@@ -47,7 +48,7 @@ export class UserViewCourseComponent implements OnInit {
   }
 
   changeVideo(id: string, index: number) {
-    this.userService.getCourse(id).subscribe((course: any) => {
+    this.userService.getCourse(id).subscribe((course: course) => {
       this.video = course.modules[index].moduleVideo
       this.activeModuleId = course.modules[index]._id
     })

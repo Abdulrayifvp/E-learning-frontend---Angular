@@ -46,12 +46,13 @@ export class InstructorRegisterComponent implements OnInit {
       phone: formData.phone,
       password: formData.password
     }
-    this.instructorService.signup(data).subscribe((response: object) => {
-      localStorage.setItem('instructorToken', "" + response)
-      this.router.navigate(['/instructor/'])
-
-    }, (err) => {
-      this.errorMessage = err
+    this.instructorService.signup(data).subscribe({
+      next: (response: object) => {
+        localStorage.setItem('instructorToken', "" + response)
+        this.router.navigate(['/instructor/'])
+      }, error: (err) => {
+        this.errorMessage = err
+      }
     })
 
   }
