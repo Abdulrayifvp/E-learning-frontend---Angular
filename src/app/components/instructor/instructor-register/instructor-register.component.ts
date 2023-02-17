@@ -51,7 +51,7 @@ export class InstructorRegisterComponent implements OnInit {
       this.router.navigate(['/instructor/'])
 
     }, (err) => {
-      this.errorMessage = err.error
+      this.errorMessage = err
     })
 
   }

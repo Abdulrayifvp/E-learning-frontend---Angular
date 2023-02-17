@@ -51,7 +51,7 @@ export class UserRegisterComponent implements OnInit {
       this.router.navigate(['/'])
 
     }, (err) => {
-      this.errorMessage = err.error
+      this.errorMessage = err
     })
 
   }

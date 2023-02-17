@@ -14,8 +14,6 @@ export class UserPurchasedCoursesComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getPurchasedCourseDetailed().subscribe((result: any) => {
       this.purchasedCourses = result
-      console.log(this.purchasedCourses);
-
     })
   }
 

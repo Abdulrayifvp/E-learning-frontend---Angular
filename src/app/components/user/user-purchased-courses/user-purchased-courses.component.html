@@ -5,14 +5,94 @@
             yet.</b>
     </div>
     <div class="row">
-        <div *ngFor="let course of purchasedCourses" class="card m-3" style="width: 18rem">
-            <img src="{{ course.thumbnail }}" class="card-img-top" alt="..." />
-            <div class="card-body">
-                <h5 class="card-title">{{ course.title }}</h5>
-                <p class="card-text">
-                    {{ course.description }}
-                </p>
-                <a [routerLink]="['/courses/',course._id]" class="btn btn-success">View Course</a>
+        <div class="large-screen">
+            <div *ngFor="let course of purchasedCourses" class="card mb-3" style="max-width: 100%;">
+                <div class="row g-0">
+                    <div class="col-md-4 col-lg-3">
+                        <img [src]='course.thumbnail' style="height: 250px; object-fit: cover;"
+                            class=" img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-7">
+                                    <h5 class="m-1 card-title fw-bolder">{{course.title}}</h5>
+                                    <p class="m-1 fw-normal">{{course.description}}</p>
+                                    <p *ngIf="course.level == 'Beginner'" class="m-1 ">Level : <span
+                                            class="text-success">{{course.level}}</span></p>
+                                    <p *ngIf="course.level == 'Intermidiate'" class="m-1 ">Level : <span
+                                            class="text-warning">{{course.level}}</span></p>
+                                    <p *ngIf="course.level == 'Professional'" class="m-1 ">Level : <span
+                                            class="text-danger">{{course.level}}</span></p>
+                                    <p *ngIf="course.adminVerification == 'pending'" class="m-1">Verification : <span
+                                            class="text-danger">Pending</span></p>
+                                    <p *ngIf="course.adminVerification == 'onVerification'" class="m-1">Verification
+                                        :<span class="text-primary">On Verification</span></p>
+                                    <p *ngIf="course.adminVerification == 'completed'" class="m-1">Verification : <span
+                                            class="text-success">Completed</span></p>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <div class="col-12 fw-bold m-2">
+                                            Prize : <span class="text-danger text-decoration-line-through"><span
+                                                    class="text-dark">&#8377;
+                                                    {{course.prize}}</span></span>
+                                        </div>
+                                        <div class="col-12 fw-bold m-2">
+                                            Offer Prize : &#8377; {{course.offerPrize}}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-5">
+                                        <a [routerLink]="['/courses/checkout',course._id]"
+                                            *ngIf="!purchasedCourses.includes(course._id)"
+                                            class="btn btn-primary me-2">Enroll Now</a>
+                                        <a [routerLink]="['/courses/',course._id]" class="mt-2 btn btn-success">View
+                                            Course</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="small-screen">
+            <div class="row d-flex ">
+                <div *ngFor="let course of purchasedCourses" class="col-12">
+                    <div class="card">
+                        <img [src]='course.thumbnail' style="height: 150px; object-fit: cover;" class="card-img-top"
+                            alt="...">
+                        <div class="card-body">
+                            <h6 class="card-title">{{course.title}}</h6>
+                            <!-- <p class="card-text">{{course.description}}</p> -->
+                            <p *ngIf="course.level == 'Beginner'" class="m-1 ">Level : <span
+                                    class="text-success">{{course.level}}</span></p>
+                            <p *ngIf="course.level == 'Intermidiate'" class="m-1 ">Level : <span
+                                    class="text-warning">{{course.level}}</span></p>
+                            <p *ngIf="course.level == 'Professional'" class="m-1 ">Level : <span
+                                    class="text-danger">{{course.level}}</span></p>
+                            <p *ngIf="course.adminVerification == 'pending'" class="m-1">Verification : <span
+                                    class="text-danger">Pending</span></p>
+                            <p *ngIf="course.adminVerification == 'onVerification'" class="m-1">Verification :<span
+                                    class="text-primary">On Verification</span></p>
+                            <p *ngIf="course.adminVerification == 'completed'" class="m-1">Verification : <span
+                                    class="text-success">Completed</span></p>
+                            <p class="col-12 m-1">Prize : <span class="text-danger text-decoration-line-through"><span
+                                        class="text-dark">&#8377;
+                                        {{course.prize}}</span></span>
+                            </p>
+                            <p class="col-12 m-1">Offer Prize : &#8377; {{course.offerPrize}}
+                            </p>
+                            <div class="col-12">
+                                <a [routerLink]="['/courses/checkout',course._id]"
+                                    *ngIf="!purchasedCourses.includes(course._id)"
+                                    class="col-12 btn btn-primary me-2">Enroll Now</a>
+                                <a [routerLink]="['/courses/',course._id]" class="col-12 mt-2 btn btn-success">View
+                                    Course</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

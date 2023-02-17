@@ -53,7 +53,7 @@
                     </a>
                 </div>
             </div>
-            <button class="btn btn-success mt-3" [routerLink]="['/courses/checkout',course._id]"
+            <button class="col-12 btn btn-success mt-3" [routerLink]="['/courses/checkout',course._id]"
                 *ngIf="!purchasedCourses.includes(course._id)">Enroll Now</button>
             <div class="mt-3">
                 <h5>Modules</h5>
@@ -68,7 +68,6 @@
                                 (click)="downloadMyFile(module.note)">Download
                                 Notes</a>
                         </div>
-                        <p class="mb-1">{{module.description}}</p>
                     </a>
                 </div>
                 <div class="list-group" *ngIf="purchasedCourses.includes(course._id)">
@@ -82,7 +81,7 @@
                                 (click)="downloadMyFile(module.note)">Download
                                 Notes</a>
                         </div>
-                        <p class="mb-1">{{module.description}}</p>
+                        <p class="mb-1" *ngIf="activeModuleId === module._id">{{module.description}}</p>
                     </a>
                 </div>
             </div>

@@ -14,12 +14,17 @@ export class UserHomeComponent implements OnInit {
   constructor(private userService: UserServices) { }
 
   ngOnInit(): void {
-    this.userService.getPurchasedCourse().subscribe((result: any) => {
-      this.purchasedCourses = result
-    })
     this.userService.getAllCourses().subscribe((result: any) => {
       this.courses = result
     })
+    if (this.userService.isLoggedIn() === true) {
+      this.userService.getPurchasedCourse().subscribe((result: any) => {
+        this.purchasedCourses = result
+      })
+    } else {
+      this.purchasedCourses = []
+    }
+
   }
 
 

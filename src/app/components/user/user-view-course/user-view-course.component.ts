@@ -23,9 +23,14 @@ export class UserViewCourseComponent implements OnInit {
     this.course = this.route.params.subscribe(params => {
       this.getCourseById(params['id'])
     })
-    this.userService.getPurchasedCourse().subscribe((result: any) => {
-      this.purchasedCourses = result
-    })
+    if (this.userService.isLoggedIn() === true) {
+      this.userService.getPurchasedCourse().subscribe((result: any) => {
+        this.purchasedCourses = result
+      })
+    } else {
+      this.purchasedCourses = []
+    }
+
   }
 
   getCourseById(id: string) {
