@@ -37,12 +37,16 @@ export class UserLoginComponent implements OnInit {
     }
 
     this.userService.login(data).subscribe({
-      next: (response) => {
-        localStorage.setItem('userToken', "" + response)
-        this.router.navigate(['/'])
-      }, error: (err) => {
-        console.log(err);
-        this.errorMessage = err
+      next: (response: any) => {
+        if (response.status == true) {
+          localStorage.setItem('userToken', "" + response.token)
+          this.router.navigate(['/'])
+        } else {
+          this.errorMessage = response.message
+          setTimeout(() => {
+            this.errorMessage = ''
+          }, 2000)
+        }
       }
     })
   }

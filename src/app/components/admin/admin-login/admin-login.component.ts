@@ -37,9 +37,17 @@ export class AdminLoginComponent implements OnInit {
 
 
     this.adminService.login(data).subscribe({
-      next: (response) => {
-        localStorage.setItem('adminToken', "" + response)
-        this.router.navigate(['/admin/'])
+      next: (response: any) => {
+        if (response.status == true) {
+          localStorage.setItem('adminToken', "" + response.token)
+          this.router.navigate(['/admin/'])
+        } else {
+          this.errorMessage = response.message
+          setTimeout(() => {
+            this.errorMessage = ''
+          }, 2000)
+        }
+
       },
       error: (err) => {
         this.errorMessage = err

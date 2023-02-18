@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserHeaderComponent } from './components/user/user-header/user-header.component';
@@ -37,6 +37,7 @@ import { UserPurchaseFailedPageComponent } from './components/user/user-purchase
 import { ErrorIntercepterService } from './services/error-intercepter.service';
 import { UserPurchasedCoursesComponent } from './components/user/user-purchased-courses/user-purchased-courses.component';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
+import { ErrorResponseIntercepterService } from './services/error-response-intercepter.service';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
     FontAwesomeModule,
     NgbModule,
     ReactiveFormsModule,
+    FormsModule,
     HttpClientModule,
     VgCoreModule,
     VgControlsModule,
@@ -90,6 +92,11 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
       useClass: ErrorIntercepterService,
       multi: true
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorResponseIntercepterService,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

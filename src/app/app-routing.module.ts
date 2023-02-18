@@ -116,6 +116,10 @@ const routes: Routes = [
     canActivate: [AdminAuthGuard]
   },
   {
+    path: '404',
+    component: ErrorPageComponent
+  },
+  {
     path: '**',
     component: ErrorPageComponent
   },

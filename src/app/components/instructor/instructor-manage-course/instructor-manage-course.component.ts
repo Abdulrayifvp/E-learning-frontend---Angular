@@ -10,7 +10,19 @@ import { InstructorService } from 'src/app/services/instructor.service';
 })
 export class InstructorManageCourseComponent implements OnInit {
 
-  course!: course;
+  course: course = {
+    adminVerification: '',
+    description: '',
+    instructorID: '',
+    level: '',
+    modules: [],
+    offerPrize: '',
+    previewVideo: '',
+    prize: '',
+    thumbnail: '',
+    title: '',
+    _id: ''
+  };
   video!: string;
   activeModuleId!: string;
 

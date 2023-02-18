@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ErrorPageComponent implements OnInit {
 
-  constructor() { }
+  count: number = 0
+
+  constructor(private location: Location) { }
 
   ngOnInit(): void {
+
+  }
+
+  goBack() {
+    this.location.back()
   }
 
 }

@@ -47,12 +47,16 @@ export class UserRegisterComponent implements OnInit {
       password: formData.password
     }
     this.userService.signup(data).subscribe({
-      next: (response: object) => {
-        localStorage.setItem('userToken', "" + response)
-        this.router.navigate(['/'])
-
-      }, error: (err) => {
-        this.errorMessage = err
+      next: (response: any) => {
+        if (response.status == true) {
+          localStorage.setItem('userToken', "" + response.token)
+          this.router.navigate(['/'])
+        } else {
+          this.errorMessage = response.message
+          setTimeout(() => {
+            this.errorMessage = ''
+          }, 2000)
+        }
       }
     })
 

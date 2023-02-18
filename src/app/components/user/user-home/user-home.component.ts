@@ -10,7 +10,7 @@ import { UserServices } from 'src/app/services/user.service';
 export class UserHomeComponent implements OnInit {
 
   courses!: course[]
-  purchasedCourses!: string[]
+  purchasedCourses: string[] = []
 
 
   constructor(private userService: UserServices) { }

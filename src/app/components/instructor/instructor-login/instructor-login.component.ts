@@ -35,12 +35,16 @@ export class InstructorLoginComponent implements OnInit {
     }
 
     this.instructorService.login(data).subscribe({
-      next: (response) => {
-        localStorage.setItem('instructorToken', "" + response)
-        this.router.navigate(['/instructor/'])
-      },
-      error: (err) => {
-        this.errorMessage = err
+      next: (response: any) => {
+        if (response.status == true) {
+          localStorage.setItem('instructorToken', "" + response.token)
+          this.router.navigate(['/instructor/'])
+        } else {
+          this.errorMessage = response.message
+          setTimeout(() => {
+            this.errorMessage = ''
+          }, 2000)
+        }
       }
     })
   }

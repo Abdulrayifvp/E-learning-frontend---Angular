@@ -15,7 +15,7 @@ export class UserViewCourseComponent implements OnInit {
   courseId!: string
   video!: string;
   activeModuleId!: string;
-  purchasedCourses!: string[];
+  purchasedCourses: string[] = [];
 
 
   constructor(private route: ActivatedRoute, private userService: UserServices) { }

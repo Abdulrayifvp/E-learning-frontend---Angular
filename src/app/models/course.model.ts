@@ -10,6 +10,5 @@ export interface course {
     prize: string;
     thumbnail: string;
     title: string;
-    __v: number;
     _id: string;
 }
