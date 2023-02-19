@@ -98,4 +98,9 @@ export class InstructorService {
     return this.httpClient.get<course>(this.url + '/instructor/courses/' + id)
   }
 
+
+  fetchSubscribers(id: string) {
+    return this.httpClient.get<any>(this.url + '/instructor/subscribers/' + id)
+  }
+
 }

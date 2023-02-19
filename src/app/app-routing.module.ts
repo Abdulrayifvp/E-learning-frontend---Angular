@@ -6,11 +6,13 @@ import { CourseViewComponent } from './components/admin/course-view/course-view.
 import { ManageCoursesComponent } from './components/admin/manage-courses/manage-courses.component';
 import { InstructorAddCourseComponent } from './components/instructor/instructor-add-course/instructor-add-course.component';
 import { InstructorAddModuleComponent } from './components/instructor/instructor-add-module/instructor-add-module.component';
+import { InstructorCourseEditComponent } from './components/instructor/instructor-course-edit/instructor-course-edit.component';
 import { InstructorCoursesComponent } from './components/instructor/instructor-courses/instructor-courses.component';
 import { InstructorHomeComponent } from './components/instructor/instructor-home/instructor-home.component';
 import { InstructorLoginComponent } from './components/instructor/instructor-login/instructor-login.component';
 import { InstructorManageCourseComponent } from './components/instructor/instructor-manage-course/instructor-manage-course.component';
 import { InstructorRegisterComponent } from './components/instructor/instructor-register/instructor-register.component';
+import { InstructorSubscribersListComponent } from './components/instructor/instructor-subscribers-list/instructor-subscribers-list.component';
 import { UserCheckoutPageComponent } from './components/user/user-checkout-page/user-checkout-page.component';
 import { UserHomeComponent } from './components/user/user-home/user-home.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
@@ -92,8 +94,18 @@ const routes: Routes = [
     canActivate: [InstructorAuthGuard]
   },
   {
+    path: 'instructor/courses/subscribers/:id',
+    component: InstructorSubscribersListComponent,
+    canActivate: [InstructorAuthGuard]
+  },
+  {
     path: 'instructor/courses/manageCourse/:id/addModule',
     component: InstructorAddModuleComponent,
+    canActivate: [InstructorAuthGuard]
+  },
+  {
+    path: 'instructor/courses/manageCourse/:id/editCourse',
+    component: InstructorCourseEditComponent,
     canActivate: [InstructorAuthGuard]
   },
   {

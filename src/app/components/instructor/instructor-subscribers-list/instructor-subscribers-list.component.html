@@ -1,0 +1,22 @@
+<app-instructor-header></app-instructor-header>
+<div class="container mt-5">
+    <p *ngIf="subscribers.length==0" class="text-center"><b>No subscribers</b></p>
+    <table *ngIf="subscribers.length !==0 " class="table table-hover table-bordered table-responsive">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let subscriber of subscribers">
+                <th scope="row">1</th>
+                <td>{{subscriber.name}}</td>
+                <td>{{subscriber.email}}</td>
+                <td>{{subscriber.phone}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

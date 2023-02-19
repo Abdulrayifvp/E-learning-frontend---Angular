@@ -13,8 +13,8 @@ import { course } from 'src/app/models/course.model';
 })
 export class InstructorCoursesComponent implements OnInit {
   sortIcon = faSort;
-  fetchedcourses!: course[]
-  displayedCourse!: course[]
+  fetchedcourses: course[] = []
+  displayedCourse: course[] = []
   searchTerm!: string
 
   constructor(private instructorService: InstructorService) { }
@@ -33,7 +33,6 @@ export class InstructorCoursesComponent implements OnInit {
     } else {
       this.displayedCourse = this.fetchedcourses
     }
-
   }
 
 

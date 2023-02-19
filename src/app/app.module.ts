@@ -38,6 +38,8 @@ import { ErrorIntercepterService } from './services/error-intercepter.service';
 import { UserPurchasedCoursesComponent } from './components/user/user-purchased-courses/user-purchased-courses.component';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 import { ErrorResponseIntercepterService } from './services/error-response-intercepter.service';
+import { InstructorSubscribersListComponent } from './components/instructor/instructor-subscribers-list/instructor-subscribers-list.component';
+import { InstructorCourseEditComponent } from './components/instructor/instructor-course-edit/instructor-course-edit.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import { ErrorResponseIntercepterService } from './services/error-response-inter
     UserPurchaseFailedPageComponent,
     UserPurchasedCoursesComponent,
     ErrorPageComponent,
+    InstructorSubscribersListComponent,
+    InstructorCourseEditComponent,
 
 
   ],
