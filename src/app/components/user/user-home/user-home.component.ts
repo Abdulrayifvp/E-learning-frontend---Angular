@@ -9,15 +9,18 @@ import { UserServices } from 'src/app/services/user.service';
 })
 export class UserHomeComponent implements OnInit {
 
-  courses!: course[]
   purchasedCourses: string[] = []
+  fetchedcourses: course[] = []
+  displayedCourse: course[] = []
+  searchTerm!: string
 
 
   constructor(private userService: UserServices) { }
 
   ngOnInit(): void {
     this.userService.getAllCourses().subscribe((result: course[]) => {
-      this.courses = result
+      this.fetchedcourses = result
+      this.displayedCourse = this.fetchedcourses
     })
     if (this.userService.isLoggedIn() === true) {
       this.userService.getPurchasedCourse().subscribe((result: string[]) => {
@@ -29,6 +32,14 @@ export class UserHomeComponent implements OnInit {
       this.purchasedCourses = []
     }
 
+  }
+
+  search() {
+    if (this.searchTerm != '') {
+      this.displayedCourse = this.fetchedcourses.filter(item => item.title.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    } else {
+      this.displayedCourse = this.fetchedcourses
+    }
   }
 
 
