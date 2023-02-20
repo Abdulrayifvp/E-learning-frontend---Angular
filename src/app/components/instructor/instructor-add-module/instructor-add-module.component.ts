@@ -15,6 +15,7 @@ export class InstructorAddModuleComponent implements OnInit {
   submitted = false;
   progress = 0
   courseId: string = '';
+  checked: boolean = false
 
 
 
@@ -30,9 +31,12 @@ export class InstructorAddModuleComponent implements OnInit {
       moduleVideo: [null, [Validators.required]],
     })
   }
+  check() {
+    this.checked = !this.checked
+  }
 
-  async noteSelection(event: any) {
-    const file = await event.target.files[0]
+  noteSelection(event: any) {
+    const file = event.target.files[0]
     this.addModuleForm.patchValue({
       note: file
     })
@@ -40,8 +44,8 @@ export class InstructorAddModuleComponent implements OnInit {
 
   }
 
-  async moduleVideoSelection(event: any) {
-    const file = await event.target.files[0]
+  moduleVideoSelection(event: any) {
+    const file = event.target.files[0]
     this.addModuleForm.patchValue({
       moduleVideo: file
     })

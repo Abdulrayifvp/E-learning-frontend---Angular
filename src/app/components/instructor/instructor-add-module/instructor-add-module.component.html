@@ -64,7 +64,14 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-4 mb-4">Add Module</button>
+            <div class="form-check mt-2">
+                <input class="form-check-input" (click)="check()" [disabled]="!addModuleForm.valid" type="checkbox"
+                    value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Double checked all fields
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4 mb-4" [disabled]="!this.checked">Add Module</button>
         </form>
     </div>
     <div *ngIf="progress > 0">

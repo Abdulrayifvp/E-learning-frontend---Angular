@@ -5,114 +5,155 @@
     <div class="mt-5">
         <form [formGroup]="editCourseForm" (ngSubmit)="onSubmit()">
             <div class="row">
-                <div class="col-lg-6 col-12">
-                    <label for="titleLabel" class="form-label">Give a title</label>
-                    <input [ngClass]="{
-                        'is-invalid':
-                          submitted && editCourseForm.controls['title'].errors
-                      }" formControlName="title" type="text" class="form-control" id="titleInput">
-                    <p class="text-danger" *ngIf="submitted && editCourseForm.controls['title'].errors?.['required']">
-                        Fill this field.
-                    </p>
-                    <p class="text-danger" *ngIf="submitted && editCourseForm.controls['title'].errors?.['minlength']">
-                        Minimum 8 characters required.
-                    </p>
-                </div>
-                <div class="col-lg-6 col-12">
-                    <label for="titleLabel" class="form-label">Select a Thumbnail Image</label>
-                    <input [ngClass]="{
-                        'is-invalid':
-                          submitted && editCourseForm.controls['thumbnail'].errors
-                      }" type="file" (change)="thumbnailSelection($event)" accept="image/png, image/jpeg, image/jpg"
-                        class="form-control" id="thmbnailImageInput" formControlName="thumbnail">
-                    <p class="text-danger"
-                        *ngIf="submitted && editCourseForm.controls['thumbnail'].errors?.['required']">
-                        Fill this field.
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-12">
-                    <label for="descriptionLabel" class="form-label">Description</label>
-                    <textarea [ngClass]="{
-                        'is-invalid':
-                          submitted && editCourseForm.controls['description'].errors
-                      }" formControlName="description" class="form-control" id="descriptionTextArea"
-                        rows="10"></textarea>
-                    <p class="text-danger"
-                        *ngIf="submitted && editCourseForm.controls['description'].errors?.['required']">
-                        Fill this field.
-                    </p>
-                    <p class="text-danger"
-                        *ngIf="submitted && editCourseForm.controls['description'].errors?.['minlength']">
-                        Minimum 15 characters required.
-                    </p>
-                </div>
-                <div class="col-lg-6 col-12">
+                <div class="col-12 col-lg-6">
                     <div class="col-12">
-                        <label for="titleLabel" class="form-label">Preview Video</label>
+                        <label for="titleLabel" class="form-label">Give a title</label>
                         <input [ngClass]="{
-                            'is-invalid':
-                              submitted && editCourseForm.controls['previewVideo'].errors
-                          }" (change)="previewVideoSelection($event)" type="file"
-                            accept="video/mp4, video/mov, video/mkv, video/aoi" class="form-control"
-                            id="thmbnailImageInput" formControlName="previewVideo">
+                                        'is-invalid':
+                                          submitted && editCourseForm.controls['title'].errors
+                                      }" formControlName="title" type="text" class="form-control" id="titleInput">
                         <p class="text-danger"
-                            *ngIf="submitted && editCourseForm.controls['previewVideo'].errors?.['required']">
+                            *ngIf="submitted && editCourseForm.controls['title'].errors?.['required']">
                             Fill this field.
                         </p>
+                        <p class="text-danger"
+                            *ngIf="submitted && editCourseForm.controls['title'].errors?.['minlength']">
+                            Minimum 8 characters required.
+                        </p>
                     </div>
-                    <label for="CourseLevelLabel" class="form-label col-4 col-md-4 col-lg-3 mt-2">Course Level</label>
-                    <div class="row mt-2 ">
-                        <div class="col-12 col-md-12 col-lg-12 d-flex justify-content-between">
-                            <div class="me-1">
-                                <input type="radio" formControlName="level" value="Beginner" class="btn-check"
-                                    id="success-outlined" autocomplete="off">
-                                <label class="btn btn-outline-success" for="success-outlined">Beginner</label>
+                    <div class="col-12">
+                        <label for="descriptionLabel" class="form-label">Description</label>
+                        <textarea [ngClass]="{
+                            'is-invalid':
+                              submitted && editCourseForm.controls['description'].errors
+                          }" formControlName="description" class="form-control" id="descriptionTextArea"
+                            rows="10"></textarea>
+                        <p class="text-danger"
+                            *ngIf="submitted && editCourseForm.controls['description'].errors?.['required']">
+                            Fill this field.
+                        </p>
+                        <p class="text-danger"
+                            *ngIf="submitted && editCourseForm.controls['description'].errors?.['minlength']">
+                            Minimum 15 characters required.
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <label for="CourseLevelLabel" class="form-label col-4 col-md-4 col-lg-3 mt-2">Course
+                            Level</label>
+                        <div class="row mt-2">
+                            <div class="col-12 col-md-12 col-lg-12 d-flex justify-content-between">
+                                <div class="me-1">
+                                    <input type="radio" formControlName="level" value="Beginner" class="btn-check"
+                                        id="success-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-success" for="success-outlined">Beginner</label>
+                                </div>
+                                <div class="me-1">
+                                    <input type="radio" class="btn-check" formControlName="level" value="Intermidiate"
+                                        id="warning-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-warning" for="warning-outlined">Intermidiate</label>
+                                </div>
+                                <div class="me-1">
+                                    <input type="radio" class="btn-check" formControlName="level" value="Professional"
+                                        id="danger-outlined" autocomplete="off">
+                                    <label class="btn btn-outline-danger" for="danger-outlined">Professional</label>
+                                </div>
+                                <p class="text-danger"
+                                    *ngIf="submitted && editCourseForm.controls['level'].errors?.['required']">
+                                    Select an option.
+                                </p>
                             </div>
-                            <div class="me-1">
-                                <input type="radio" class="btn-check" formControlName="level" value="Intermidiate"
-                                    id="warning-outlined" autocomplete="off">
-                                <label class="btn btn-outline-warning" for="warning-outlined">Intermidiate</label>
-                            </div>
-                            <div class="me-1">
-                                <input type="radio" class="btn-check" formControlName="level" value="Professional"
-                                    id="danger-outlined" autocomplete="off">
-                                <label class="btn btn-outline-danger" for="danger-outlined">Professional</label>
-                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="CourseLevelLabel" class="form-label mt-2">Prize</label>
+                            <input [ngClass]="{
+                                            'is-invalid':
+                                              submitted && editCourseForm.controls['prize'].errors
+                                          }" type="number" formControlName="prize" class="form-control"
+                                id="titleInput">
                             <p class="text-danger"
-                                *ngIf="submitted && editCourseForm.controls['level'].errors?.['required']">
-                                Select an option.
+                                *ngIf="submitted && editCourseForm.controls['prize'].errors?.['required']">
+                                Fill this field.
                             </p>
                         </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="CourseLevelLabel" class="form-label mt-2">Prize</label>
-                                <input [ngClass]="{
-                                    'is-invalid':
-                                      submitted && editCourseForm.controls['prize'].errors
-                                  }" type="number" formControlName="prize" class="form-control" id="titleInput">
-                                <p class="text-danger"
-                                    *ngIf="submitted && editCourseForm.controls['prize'].errors?.['required']">
-                                    Fill this field.
-                                </p>
-                            </div>
-                            <div class="col-6">
-                                <label for="CourseLevelLabel" class="form-label mt-2">Offer Prize</label>
-                                <input [ngClass]="{
-                                    'is-invalid':
-                                      submitted && editCourseForm.controls['offerPrize'].errors
-                                  }" type="number" formControlName="offerPrize" class="form-control" id="titleInput">
-                                <p class="text-danger"
-                                    *ngIf="submitted && editCourseForm.controls['offerPrize'].errors?.['required']">
-                                    Fill this field.
-                                </p>
-                            </div>
+                        <div class="col-6">
+                            <label for="CourseLevelLabel" class="form-label mt-2">Offer Prize</label>
+                            <input [ngClass]="{
+                                            'is-invalid':
+                                              submitted && editCourseForm.controls['offerPrize'].errors
+                                          }" type="number" formControlName="offerPrize" class="form-control"
+                                id="titleInput">
+                            <p class="text-danger"
+                                *ngIf="submitted && editCourseForm.controls['offerPrize'].errors?.['required']">
+                                Fill this field.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-12 col-lg-6">
+                    <div class="row mt-3">
+                        <div class="col-12 col-md-12 col-lg-6">
+                            <label for="">Thumbnail</label>
+                            <img class="col-12" [src]="course.thumbnail" alt="" srcset="">
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <label for="">Preview video</label>
+                            <video class="col-12" controls [src]="course.previewVideo"></video>
+                        </div>
+                        <div class="col-12">
+                            <label for="titleLabel" class="form-label mt-3">Change Thumbnail</label>
+                            <input [ngClass]="{
+                                        'is-invalid':
+                                          submitted && editCourseForm.controls['thumbnail'].errors
+                                      }" type="file" (change)="thumbnailSelection($event)"
+                                accept="image/png, image/jpeg, image/jpg" class="form-control" id="thmbnailImageInput"
+                                formControlName="thumbnail">
+                            <p class="text-danger"
+                                *ngIf="submitted && editCourseForm.controls['thumbnail'].errors?.['required']">
+                                Fill this field.
+                            </p>
+                        </div>
+                        <div class="col-12">
+                            <label for="titleLabel" class="form-label mt-2">Change preview video</label>
+                            <input [ngClass]="{
+                                        'is-invalid':
+                                          submitted && editCourseForm.controls['previewVideo'].errors
+                                      }" (change)="previewVideoSelection($event)" type="file"
+                                accept="video/mp4, video/mov, video/mkv, video/aoi" class="form-control"
+                                id="thmbnailImageInput" formControlName="previewVideo">
+                            <p class="text-danger"
+                                *ngIf="submitted && editCourseForm.controls['previewVideo'].errors?.['required']">
+                                Fill this field.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-4 mb-4">Create Course</button>
+            <h3 class="mt-5">Edit Modules</h3>
+            <p class="fw-lighter text-muted"><small>Drag & drop to arrange orders</small></p>
+            <div cdkDropList class="example-list col-12 mt-3" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let module of modules let indexOfelement=index;" cdkDrag>
+                    <div class="col-10">
+                        <h6>#{{indexOfelement+1}} {{module.title}}</h6>
+                        <p>{{module.description}}</p>
+                    </div>
+                    <div class="col-2">
+                        <button class="btn btn-primary m-2 float-end"
+                            [routerLink]="['/instructor/courses/manageCourse/'+course._id+'/editModule/'+module._id]">Edit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-check mt-2">
+                <input class="form-check-input" (click)="check()" [disabled]="!editCourseForm.valid" type="checkbox"
+                    value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Double checked all fields
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-success mt-4 mb-4" [disabled]="!this.checked">UPDATE</button>
         </form>
     </div>
     <div *ngIf="progress > 0">

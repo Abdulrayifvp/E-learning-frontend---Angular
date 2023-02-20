@@ -16,6 +16,7 @@ export class InstructorAddCourseComponent implements OnInit {
   addCourseForm !: FormGroup
   submitted = false;
   progress = 0
+  checked: boolean = false
 
 
 
@@ -51,7 +52,9 @@ export class InstructorAddCourseComponent implements OnInit {
 
   }
 
-
+  check() {
+    this.checked = !this.checked
+  }
 
 
   onSubmit() {

@@ -7,6 +7,7 @@ import { ManageCoursesComponent } from './components/admin/manage-courses/manage
 import { InstructorAddCourseComponent } from './components/instructor/instructor-add-course/instructor-add-course.component';
 import { InstructorAddModuleComponent } from './components/instructor/instructor-add-module/instructor-add-module.component';
 import { InstructorCourseEditComponent } from './components/instructor/instructor-course-edit/instructor-course-edit.component';
+import { InstructorCourseModuleEditComponent } from './components/instructor/instructor-course-module-edit/instructor-course-module-edit.component';
 import { InstructorCoursesComponent } from './components/instructor/instructor-courses/instructor-courses.component';
 import { InstructorHomeComponent } from './components/instructor/instructor-home/instructor-home.component';
 import { InstructorLoginComponent } from './components/instructor/instructor-login/instructor-login.component';
@@ -101,6 +102,11 @@ const routes: Routes = [
   {
     path: 'instructor/courses/manageCourse/:id/addModule',
     component: InstructorAddModuleComponent,
+    canActivate: [InstructorAuthGuard]
+  },
+  {
+    path: 'instructor/courses/manageCourse/:id/editModule/:moduleId',
+    component: InstructorCourseModuleEditComponent,
     canActivate: [InstructorAuthGuard]
   },
   {

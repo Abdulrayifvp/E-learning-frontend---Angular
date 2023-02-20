@@ -40,6 +40,9 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
 import { ErrorResponseIntercepterService } from './services/error-response-intercepter.service';
 import { InstructorSubscribersListComponent } from './components/instructor/instructor-subscribers-list/instructor-subscribers-list.component';
 import { InstructorCourseEditComponent } from './components/instructor/instructor-course-edit/instructor-course-edit.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { InstructorCourseModuleEditComponent } from './components/instructor/instructor-course-module-edit/instructor-course-module-edit.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +72,7 @@ import { InstructorCourseEditComponent } from './components/instructor/instructo
     ErrorPageComponent,
     InstructorSubscribersListComponent,
     InstructorCourseEditComponent,
+    InstructorCourseModuleEditComponent,
 
 
   ],
@@ -83,7 +87,9 @@ import { InstructorCourseEditComponent } from './components/instructor/instructo
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [UserServices, UserAuthGuard,
     {

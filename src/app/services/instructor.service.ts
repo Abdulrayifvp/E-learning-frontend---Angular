@@ -72,6 +72,32 @@ export class InstructorService {
     })
   }
 
+  editCourse(data: AddCoursedata, courseId: string, modules: any[]) {
+
+    const { title, description, thumbnail, previewVideo, level, prize, offerPrize } = data
+
+
+    var formData: any = new FormData()
+    formData.append('title', title)
+    formData.append('description', description)
+    formData.append('thumbnail', thumbnail)
+    formData.append('previewVideo', previewVideo)
+    formData.append('level', level)
+    formData.append('prize', prize)
+    formData.append('offerPrize', offerPrize)
+    formData.append('modules', JSON.stringify(modules))
+    // modules.forEach((item) => formData.append("modules[]", item))
+    formData.append('instructorToken', this.getToken())
+
+    console.log(formData);
+
+
+    return this.httpClient.post(this.url + '/instructor/courses/editCourse/' + courseId, formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+  }
+
   addModule(data: addModuledata, id: string) {
     const { title, description, note, moduleVideo } = data
 
@@ -90,12 +116,32 @@ export class InstructorService {
     })
   }
 
+  editModule(data: addModuledata, courseId: string, moduleId: string) {
+    const { title, description, note, moduleVideo } = data
+
+    var formData: any = new FormData()
+    formData.append('title', title)
+    formData.append('description', description)
+    formData.append('note', note)
+    formData.append('moduleVideo', moduleVideo)
+
+    return this.httpClient.post(this.url + '/instructor/courses/' + courseId + '/editModule/' + moduleId, formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+  }
+
+
   fetchCourses() {
     return this.httpClient.get<course[]>(this.url + '/instructor/courses/')
   }
 
   getCourse(id: string) {
     return this.httpClient.get<course>(this.url + '/instructor/courses/' + id)
+  }
+
+  getModule(courseId: string, moduleId: string) {
+    return this.httpClient.get(this.url + '/instructor/course/' + courseId + '/module/' + moduleId)
   }
 
 

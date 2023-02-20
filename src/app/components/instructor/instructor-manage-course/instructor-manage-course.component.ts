@@ -31,7 +31,6 @@ export class InstructorManageCourseComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.getCourseById(params['id'])
-
     })
   }
   playPreview() {
